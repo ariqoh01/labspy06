@@ -1,83 +1,77 @@
-x = {}
+dataMahasiswa = {}
+
+print("=" * 65)
+print("|\tPROGRAM INPUT NILAI MAHASISWA MENGGUNAKAN FUNGSI\t|")
+print("=" * 65)
+
+
+def tambah():
+        nama = str(input("Masukan Nama : "))
+        nim = int(input("Masukan Nim   : "))
+        tugas = int(input("Masukan Nilai Tugas : "))
+        uts = int(input("Masukan Nilai UTS     : "))
+        uas = int(input("Masukan Nilai UAS     : "))
+        akhir = (tugas / 3) + (uts / 3.5) + (uas / 3.5)
+        dataMahasiswa[nama] = nim, tugas, uts, uas, akhir,
+        print("\nDATA BERHASIL DI TAMBAHKAN!")
+def tampilkan():
+        print("=" * 69)
+        print("|" + "\t" * 3 + "DAFTAR NILAI MAHASISWA" + "\t" * 3 +
+                  "    |")
+        print("=" * 69)
+        print("| NO |   \tNAMA\t   |\tNIM \t| TUGAS | UTS | UAS | AKHIR |")
+        print("=" * 69)
+        for tampil in dataMahasiswa.items():
+            no = 0
+            no += 1
+            print("| {6:2} |\t {0:15}   | {1:9} \t| {2:5} | {3:3} | {4:3} | {5:5} |".format(tampil[0], tampil[1][0], tampil[1][1], tampil[1][2], tampil[1][3],"%.2f" % float(tampil[1][4]), no))
+            print("=" * 69)
+def hapus(nama):
+            del dataMahasiswa[nama]
+            print("DATA BERHASIL DI HAPUS!")
+ 
+def ubah(nama):
+        if nama in dataMahasiswa.keys():
+            nim = int(input("Masukan Nim  : "))
+            tugas = int(input("Masukan Nilai Tugas : "))
+            uts = int(input("Masukan Nilai UTS     : "))
+            uas = int(input("Masukan Nilai UAS     : "))
+            akhir = (tugas / 3) + (uts / 3.5) + (uas / 3.5)
+            dataMahasiswa[nama] = nim, tugas, uts, uas, akhir
+            print("\nDATA BERHASIL DI UBAH!")
+        else:
+            print("\DATA TIDAK DI TEMUKAN!")
 
 while True:
-    header="PROGRAM INPUT NILAI MAHASISWA"
-    header2=("MENU UTAMA")
-    print(header.center(97,"="))
-    print()
-    print(header2.center(97,"_"))
-    c = input("\n(M)Menampilkan, (T)ambah, (U)bah), (H)apus, (C)ari, (K)eluar: ")
+    data = input(
+        "\n 1 - Tambah Data,\t 2 - Tampilkan Data,\t 3 - Hapus Data,\t 4 - Ubah Data, 5 - Keluar \n : "
+    )
+    if (data.lower() == '1'):
+        tambah()
 
-    if c.lower() == 't':
-        print("Tambah Data")
-        nama = input("Nama\t\t: ")
-        nim = int(input("NIM\t\t\t: "))
-        uts = int(input("Nilai UTS\t: "))
-        uas = int(input("Nilai UAS\t: "))
-        tugas = int(input("Nilai Tugas\t: "))
-        akhir = tugas*30/100 + uts*35/100 + uas*35/100
-        x[nama] = nim, uts, uas, tugas, akhir
-
-    elif c.lower() == 'u':
-        print("Ubah Data")
-        nama = input("\tMasukkan Nama\t\t: ")
-        if nama in x.keys():
-            nim     = int(input("\tNIM      \t\t\t: "))
-            uts     = int(input("\tNilai UTS\t\t\t: "))
-            uas     = int(input("\tNilai UAS\t\t\t: "))
-            tugas   = int(input("\tNilai Tugas\t\t\t: "))
-            akhir   = tugas*30/100 + uts*35/100 + uas*35/100
-            x[nama] = nim, uts, uas, tugas, akhir
+    elif (data.lower() == '4'):
+        nama = str(input("Masukan Nama : "))
+        ubah(nama)
+    elif (data.lower() == '3'):
+        nama = str(input("Masukan Nama : "))
+        if nama in dataMahasiswa:
+            hapus(nama)
         else:
-            print("Nama {0} tidak ditemukan".format(nama))
-
-    elif c.lower() == 'h':
-        print("Hapus Data")
-        nama = input("Masukkan Nama  : ")
-        if nama in x.keys():
-            del x[nama]
+            print("DATA TIDAK DI TEMUKAN ".format(nama))
+    elif (data.lower() == '2'):
+        if dataMahasiswa.items():
+            tampilkan()
         else:
-            print("Nama {0} Tidak Ditemukan".format(nama))
-
-    elif c.lower() == 'c':
-        print("Cari Data[case-sensitive]")
-        nama = input("Masukkan Nama : ")
-        if nama in x.keys():
-            print("="*73)
-            print("|                             Daftar Mahasiswa                          |")
-            print("="*73)
-            print("| Nama            |       NIM       |  UTS  |  UAS  |  Tugas  |  Akhir  |")
-            print("="*73)
-            print("| {0:15s} | {1:15d} | {2:5d} | {3:5d} | {4:7d} | {5:7.2f} |"
-                  .format(nama, nim, uts, uas, tugas, akhir))
-            print("="*73)
-        else:
-            print("Nama {0} Tidak Ditemukan".format(nama))
-
-    elif c.lower() == 'm':
-        if x.items():
-            print("="*78)
-            print("|                               Daftar Mahasiswa                             |")
-            print("="*78)
-            print("|No. | Nama            |       NIM       |  UTS  |  UAS  |  Tugas  |  Akhir  |")
-            print("="*78)
-            i = 0
-            for z in x.items():
-                i += 1
-                print("| {no:2d} | {0:15s} | {1:15d} | {2:5d} | {3:5d} | {4:7d} | {5:7.2f} |"
-                      .format(z[0][:13], z[1][0], z[1][1], z[1][2], z[1][3], z[1][4], no=i))
-            print("=" * 78)
-        else:
-            print("="*78)
-            print("|                               Daftar Mahasiswa                             |")
-            print("="*78)
-            print("|No. | Nama            |       NIM       |  UTS  |  UAS  |  Tugas  |  Akhir  |")
-            print("="*78)
-            print("|                                TIDAK ADA DATA                              |")
-            print("="*78)
-
-    elif c. lower() == 'k':
-        break
-
+            print("=" * 69)
+            print("|" + "\t" * 3 + "DAFTAR NILAI MAHASISWA" + "\t" * 3 +
+                  "    |")
+            print("=" * 69)
+            print("| NO |   \tNAMA\t   |\tNIM \t| TUGAS | UTS | UAS | AKHIR |")
+            print("=" * 69)
+            print("|    " + "\t" * 3 + "TIDAK ADA DATA!" + "\t" * 4 + "    |")
+            print("=" * 69)
+    elif (data.lower() == '5'):
+        print("\nTERIMA KASIH! \n")
+        exit()
     else:
-        print("Pilih menu yang tersedia")
+        print("PILIHAN MENU TIDAK ADA!")
