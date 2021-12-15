@@ -1,8 +1,8 @@
 # **PROGRAM INPUT NILAI MAHASISWA MENGGUNAKAN FUNGSI**
 
 ```sh
-Nama   : Maulana Reza Badrudin
-Nim    : 312110510
+Nama   : Ariqoh Zulaika Zuhrah
+Nim    : 312110138
 Matkul : Bahas Pemograman
 ```
 
@@ -23,4 +23,4 @@ ubah(nama)
 ```
 8. SELESAI
 ## **FLOWCHART**
-![eza](png/flowchart.png)
+![.](png/flowchart.png)
